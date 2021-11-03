@@ -1,12 +1,14 @@
-import { Button } from 'antd';
+import { Input, Layout } from 'antd';
+import Navbar from 'components/Navbar';
 import React from 'react';
 import './App.less';
 
 function App() {
   return (
-    <div className='btn'>
-      <Button>CLICK HERE</Button>
-    </div>
+    <Layout>
+      <Navbar />
+      <Input.Search style={{ width: 200 }} value='TEST' />
+    </Layout>
   );
 }
 
