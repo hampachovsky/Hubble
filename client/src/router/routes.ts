@@ -1,5 +1,5 @@
 import { Login } from 'pages/Login';
-import { Posts } from 'pages/Posts';
+import { Articles } from 'pages/Articles';
 import { Profile } from 'pages/Profile';
 import { Register } from 'pages/Register';
 
@@ -11,10 +11,10 @@ export interface IRoute {
 
 export enum routesName {
   LOGIN = '/login',
-  Register = '/register',
+  REGISTER = '/register',
   PROFILE = '/profile',
-  POSTS = '/',
-  POST = '/post/:id',
+  ARTICLES = '/articles',
+  ARTICLE = '/article/:id',
 }
 
 export const publicRoutes: IRoute[] = [
@@ -23,15 +23,15 @@ export const publicRoutes: IRoute[] = [
     component: Login,
   },
   {
-    path: routesName.Register,
+    path: routesName.REGISTER,
     component: Register,
   },
 ];
 
 export const privateRoutes: IRoute[] = [
   {
-    path: routesName.POSTS,
-    component: Posts,
+    path: routesName.ARTICLES,
+    component: Articles,
     exact: true,
   },
   { path: routesName.PROFILE, component: Profile },

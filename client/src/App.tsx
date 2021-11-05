@@ -1,10 +1,12 @@
-import { Col, Layout, Row } from 'antd';
+import { Layout } from 'antd';
 import { Navbar } from 'components/Navbar';
 import { PrivateAppRouter } from 'components/PrivateAppRouter';
 import { PublicAppRouter } from 'components/PublicAppRouter';
-import { Sidebar } from 'components/Sidebar';
+import { Sidebar } from 'components/Sidebar/Sidebar';
+
 import React from 'react';
 import './App.less';
+const { Content } = Layout;
 
 function App() {
   const isAuth = true;
@@ -13,18 +15,14 @@ function App() {
       {isAuth ? (
         <>
           <Navbar />
-          <Row>
-            <Layout>
-              <Col span={4}>
-                <Sidebar />
-              </Col>
-              <Col span={20}>
-                <Layout.Content>
-                  <PublicAppRouter />
-                </Layout.Content>
-              </Col>
+          <Layout style={{ marginTop: 64 }}>
+            <Sidebar />
+            <Layout style={{ padding: '24px' }}>
+              <Content>
+                <PublicAppRouter />
+              </Content>
             </Layout>
-          </Row>
+          </Layout>
         </>
       ) : (
         <PrivateAppRouter />
