@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   AntDesignOutlined,
   BarsOutlined,
@@ -8,15 +7,13 @@ import {
   FundProjectionScreenOutlined,
   GithubOutlined,
 } from '@ant-design/icons';
+import { Menu } from 'antd';
+import React from 'react';
 import style from './Sidebar.module.less';
-import { Input, Menu } from 'antd';
 
 export const SidebarMenu: React.FC = () => {
   return (
     <div style={{ width: '100%' }}>
-      <div className={style.searchWrap}>
-        <Input.Search className={style.searchField} placeholder='test' />
-      </div>
       <Menu
         className={style.sidebarMenu}
         mode='inline'
