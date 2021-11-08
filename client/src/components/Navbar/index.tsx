@@ -1,6 +1,8 @@
-import { BarsOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import { Avatar, Col, Image, Layout, Menu, Row } from 'antd';
 import logoUrl from 'assets/logo.svg';
+import LogoutSvg from 'assets/logout.svg';
+import SearchSvg from 'assets/search.svg';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { routesName } from 'router/routes';
@@ -21,27 +23,30 @@ export const Navbar: React.FC = () => {
             theme='dark'
             mode='horizontal'
             selectable={false}
-            overflowedIndicator={<BarsOutlined style={{ fontSize: '20px' }} />}
+            overflowedIndicator={<MenuOutlined style={{ fontSize: '20px' }} />}
           >
-            <Menu.Item className={style.menuItem} key={1} onClick={() => router.push('/articles')}>
-              Aricles
+            <Menu.Item className={style.menuItem} key={1}>
+              <img src={SearchSvg} className={style.icon} alt='search' />
             </Menu.Item>
-            <Menu.Item className={style.menuItem} key={2} onClick={() => router.push('/profile')}>
+            <Menu.Item
+              className={style.menuItem}
+              key={2}
+              onClick={() => router.push(routesName.PROFILE)}
+            >
               <Avatar
-                style={{ marginRight: 10, backgroundColor: '#ffffff', color: '#000' }}
+                style={{ backgroundColor: '#ffffff', color: '#000' }}
                 size={30}
-                shape='square'
+                shape='circle'
               >
                 U
               </Avatar>
-              UserName
             </Menu.Item>
             <Menu.Item
               className={style.menuItem}
               key={3}
               onClick={() => router.push(routesName.LOGIN)}
             >
-              Logout
+              <img src={LogoutSvg} className={style.icon} alt='search' />
             </Menu.Item>
           </Menu>
         </Col>

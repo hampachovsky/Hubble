@@ -15,6 +15,7 @@ export enum routesName {
   PROFILE = '/profile',
   ARTICLES = '/articles',
   ARTICLE = '/article/:id',
+  SEARCH = '/search',
 }
 
 export const publicRoutes: IRoute[] = [
