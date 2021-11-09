@@ -11,6 +11,7 @@ type PropsType = {
   size?: SizeType;
   type?: 'text' | 'password';
   placeholder?: string;
+  value: any;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleBlur: (e: FocusEvent<HTMLInputElement>) => void;
 };
@@ -20,6 +21,7 @@ export const FormField: React.FC<PropsType> = ({
   error,
   icon,
   name,
+  value,
   type = 'text',
   placeholder = '',
   size = 'large',
@@ -45,6 +47,7 @@ export const FormField: React.FC<PropsType> = ({
           onChange={handleChange}
           onBlur={handleBlur}
           size={size}
+          value={value}
         />
       ) : (
         <Input
@@ -56,6 +59,7 @@ export const FormField: React.FC<PropsType> = ({
           onChange={handleChange}
           onBlur={handleBlur}
           size={size}
+          value={value}
         />
       )}
     </>

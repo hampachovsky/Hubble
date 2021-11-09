@@ -38,7 +38,7 @@ type TFormInitialValues = {
   passwordConfirmation: string;
 };
 
-export const SingUpForm = () => {
+export const SingUpForm: React.FC = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -60,6 +60,7 @@ export const SingUpForm = () => {
           <FormField
             touched={formik.touched.email}
             error={formik.errors.email}
+            value={formik.values.email}
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
             name={'email'}
@@ -69,6 +70,7 @@ export const SingUpForm = () => {
           <FormField
             touched={formik.touched.username}
             error={formik.errors.username}
+            value={formik.values.username}
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
             name={'username'}
@@ -78,6 +80,7 @@ export const SingUpForm = () => {
           <FormField
             touched={formik.touched.password}
             error={formik.errors.password}
+            value={formik.values.password}
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
             type={'password'}
@@ -88,6 +91,7 @@ export const SingUpForm = () => {
           <FormField
             touched={formik.touched.passwordConfirmation}
             error={formik.errors.passwordConfirmation}
+            value={formik.values.passwordConfirmation}
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
             type={'password'}

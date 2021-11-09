@@ -4,7 +4,7 @@ import logoUrl from 'assets/logo.svg';
 import LogoutSvg from 'assets/logout.svg';
 import SearchSvg from 'assets/search.svg';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { routesName } from 'router/routes';
 import style from './Navbar.module.less';
 
@@ -14,8 +14,15 @@ export const Navbar: React.FC = () => {
   return (
     <Layout.Header className={style.header}>
       <Row justify='space-around' className={style.row}>
-        <Col className={style.logoWrap} span={4}>
-          <Image className={style.logo} preview={false} src={logoUrl} />
+        <Col span={5}>
+          <Link to='/' className={style.logoWrap}>
+            <Image
+              onClick={() => router.push('/')}
+              className={style.logo}
+              preview={false}
+              src={logoUrl}
+            />
+          </Link>
         </Col>
         <Col className={style.menuRow} span={16}>
           <Menu

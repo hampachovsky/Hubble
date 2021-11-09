@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import style from './Form.module.less';
 import { FormField } from './FormField';
 
-let validationSchema = yup.object().shape({
+const validationSchema = yup.object().shape({
   email: yup
     .string()
     .email('Please enter a valid email address')
@@ -16,19 +16,19 @@ let validationSchema = yup.object().shape({
   rememberMe: yup.boolean(),
 });
 
-type TFormInitialValues = {
+type FormInitialValuesType = {
   email: string;
   password: string;
   rememberMe: boolean;
 };
 
-export const SingInForm = () => {
+export const SingInForm: React.FC = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
       rememberMe: false,
-    } as TFormInitialValues,
+    } as FormInitialValuesType,
     validationSchema: validationSchema,
     validateOnBlur: true,
     onSubmit: (values, actions) => {
@@ -48,6 +48,7 @@ export const SingInForm = () => {
             name={'email'}
             placeholder={'Email'}
             icon={<MailOutlined />}
+            value={formik.values.email}
           />
           <FormField
             touched={formik.touched.password}
@@ -58,6 +59,7 @@ export const SingInForm = () => {
             name={'password'}
             placeholder={'Password'}
             icon={<LockOutlined />}
+            value={formik.values.password}
           />
           <Checkbox name='rememberMe' onChange={formik.handleChange}>
             <Typography.Title level={5}>Remember me</Typography.Title>

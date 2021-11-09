@@ -2,7 +2,7 @@ import { Card, Typography } from 'antd';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { routesName } from 'router/routes';
-import style from './Articles.module.less';
+import style from './Card.module.less';
 
 type TabListType = {
   key: string;
@@ -28,7 +28,7 @@ const tabList: Array<TabListType> = [
   },
 ];
 
-export const ArticlesFilter = () => {
+export const ArticlesFilter: React.FC = () => {
   const [activeTab, setActiveTab] = useState('all');
 
   const onTabChange = (key: string) => {

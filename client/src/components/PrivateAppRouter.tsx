@@ -3,7 +3,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { publicRoutes } from 'router/routes';
 
-export const PrivateAppRouter = () => {
+export const PrivateAppRouter: React.FC = () => {
   return (
     <Layout.Content>
       <Switch>

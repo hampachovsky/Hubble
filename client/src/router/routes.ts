@@ -2,6 +2,7 @@ import { Login } from 'pages/Login';
 import { Articles } from 'pages/Articles';
 import { Profile } from 'pages/Profile';
 import { Register } from 'pages/Register';
+import { Article } from 'pages/Article';
 
 export interface IRoute {
   path: string;
@@ -36,4 +37,5 @@ export const privateRoutes: IRoute[] = [
     exact: true,
   },
   { path: routesName.PROFILE, component: Profile },
+  { path: routesName.ARTICLE, component: Article },
 ];

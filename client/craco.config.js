@@ -11,7 +11,6 @@ module.exports = {
               '@layout-header-background': '#1e1f26',
               '@layout-trigger-background': '#1e1f26',
               '@menu-bg': '#1e1f26',
-              '@dropdown-menu-bg': '#1e1f26',
               '@cascader-menu-bg': '#1e1f26',
               '@menu-inline-submenu-bg': '#1e1f26',
               '@menu-highlight-color': '#ffffff',

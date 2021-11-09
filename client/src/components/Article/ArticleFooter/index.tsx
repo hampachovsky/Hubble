@@ -7,15 +7,15 @@ import {
 } from '@ant-design/icons';
 import { Col, Row, Space, Typography } from 'antd';
 import React from 'react';
-import style from './Articles.module.less';
+import style from './ArticleFooter.module.less';
 
 const { Text } = Typography;
 
-export const CardFooter = () => {
+export const ArticleFooter: React.FC = () => {
   return (
     <div>
-      <Row align='bottom' justify='start' className={style.cardFooter}>
-        <Col span={12} className={style.leftControlls}>
+      <Row align='middle' justify='start' className={style.articleFooter}>
+        <Col span={14} className={style.leftControlls}>
           <Space direction='horizontal' align='center'>
             <div className={style.controllItem}>
               <MessageOutlined />
@@ -30,7 +30,7 @@ export const CardFooter = () => {
             </div>
           </Space>
         </Col>
-        <Col span={12} className={style.rightControlls}>
+        <Col span={10} className={style.rightControlls}>
           <UpOutlined />
           <Text className={style.text}>0</Text>
           <DownOutlined />

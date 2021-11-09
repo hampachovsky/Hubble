@@ -13,9 +13,9 @@ function App() {
       {isAuth ? (
         <>
           <Navbar />
-          <Layout style={{ marginTop: 64 }}>
+          <Layout style={{ marginTop: 64, minHeight: '100vh' }}>
             <Layout style={{ padding: '24px' }}>
-              <Content>
+              <Content style={{ display: 'flex', justifyContent: 'center', margin: 'auto' }}>
                 <PublicAppRouter />
               </Content>
             </Layout>
