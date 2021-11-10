@@ -1,5 +1,5 @@
 import { DislikeFilled, DislikeOutlined, LikeFilled, LikeOutlined } from '@ant-design/icons';
-import { Avatar, Button, Card, Comment, Tooltip } from 'antd';
+import { Avatar, Button, Card, Comment, Tooltip, Typography } from 'antd';
 import { useFormik } from 'formik';
 import TextArea from 'rc-textarea';
 import React, { createElement, useState } from 'react';
@@ -17,7 +17,7 @@ type FormInitialValuesType = {
 
 const mockData = [1, 2, 3, 4, 5];
 
-export const Comments = () => {
+export const Comments: React.FC = () => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState<string | null>(null);
@@ -36,17 +36,18 @@ export const Comments = () => {
 
   const actions = [
     <Tooltip key='comment-basic-like' title='Like'>
-      <span onClick={like}>
+      <span className={style.commentAction} onClick={like}>
         {createElement(action === 'liked' ? LikeFilled : LikeOutlined)}
         <span className='comment-action'>{likes}</span>
       </span>
     </Tooltip>,
     <Tooltip key='comment-basic-dislike' title='Dislike'>
-      <span onClick={dislike}>
+      <span className={style.commentAction} onClick={dislike}>
         {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined)}
         <span>{dislikes}</span>
       </span>
     </Tooltip>,
+    [<span key='comment-reply'>Reply to</span>],
   ];
 
   const formik = useFormik({
@@ -63,7 +64,10 @@ export const Comments = () => {
 
   return (
     <div className={style.commentsWrapper}>
-      <Card className={style.comments} title={'Comments'}>
+      <Card
+        className={style.comments}
+        title={<Typography.Title level={4}>Comments</Typography.Title>}
+      >
         <Comment
           avatar={<Avatar src='https://joeschmoe.io/api/v1/random' alt='Han Solo' />}
           content={
@@ -82,11 +86,16 @@ export const Comments = () => {
             </form>
           }
         />
-        {mockData.map((item) => {
+        {mockData.map((item, index) => {
           return (
             <Comment
+              key={item}
               actions={actions}
-              author={<Link to={`/profile/${item}`}>Han Solo {item}</Link>}
+              author={
+                <Link className={style.authorName} to={`/profile/${item}`}>
+                  Han Solo {item}
+                </Link>
+              }
               avatar={<Avatar src='https://joeschmoe.io/api/v1/random' alt='Han Solo' />}
               content={
                 <p>
@@ -95,7 +104,19 @@ export const Comments = () => {
                   prototypes beautifully and efficiently.
                 </p>
               }
-            />
+            >
+              <Comment
+                key={index}
+                actions={actions}
+                author={
+                  <Link className={style.authorName} to={`/profile/${item}`}>
+                    Han Solo {item}
+                  </Link>
+                }
+                avatar={<Avatar src='https://joeschmoe.io/api/v1/random' alt='Han Solo' />}
+                content={<p>We supply a series of design principles.</p>}
+              />
+            </Comment>
           );
         })}
       </Card>

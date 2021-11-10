@@ -1,4 +1,4 @@
-import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Space, Typography } from 'antd';
 import { useFormik } from 'formik';
 import React from 'react';
@@ -8,16 +8,13 @@ import style from './Form.module.less';
 import { FormField } from './FormField';
 
 const validationSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email('Please enter a valid email address')
-    .required('Please enter a email address'),
+  username: yup.string().required('Please enter a username'),
   password: yup.string().required('Please enter a password'),
   rememberMe: yup.boolean(),
 });
 
 type FormInitialValuesType = {
-  email: string;
+  username: string;
   password: string;
   rememberMe: boolean;
 };
@@ -25,7 +22,7 @@ type FormInitialValuesType = {
 export const SingInForm: React.FC = () => {
   const formik = useFormik({
     initialValues: {
-      email: '',
+      username: '',
       password: '',
       rememberMe: false,
     } as FormInitialValuesType,
@@ -41,14 +38,14 @@ export const SingInForm: React.FC = () => {
       <form className={style.form} onSubmit={formik.handleSubmit}>
         <Space align='center' direction='vertical'>
           <FormField
-            touched={formik.touched.email}
-            error={formik.errors.email}
+            touched={formik.touched.username}
+            error={formik.errors.username}
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
-            name={'email'}
-            placeholder={'Email'}
-            icon={<MailOutlined />}
-            value={formik.values.email}
+            name={'username'}
+            placeholder={'username'}
+            icon={<UserOutlined />}
+            value={formik.values.username}
           />
           <FormField
             touched={formik.touched.password}

@@ -4,10 +4,10 @@
 .articleWrapper {
   width: 100%;
   .article {
-    width: 60rem;
-    .tablet (@card-tablet-width);
-    .mobile (@card-mobile-width);
-    .ultraSmall(17rem);
+    width: @page-desktop-width;
+    .tablet (@page-tablet-width);
+    .mobile (@page-mobile-width);
+    .ultraSmall(@page-ultra-small-width);
   }
   .articleTitle {
     border-bottom: 1px solid @secondary-theme-color;

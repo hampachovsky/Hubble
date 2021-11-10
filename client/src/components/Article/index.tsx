@@ -49,7 +49,7 @@ const mockData: string = ` <h2>The three greatest things you learn from travelin
 
 const { Title } = Typography;
 
-export const ArticleComponent = () => {
+export const ArticleComponent: React.FC = () => {
   return (
     <div className={style.articleWrapper}>
       <Card

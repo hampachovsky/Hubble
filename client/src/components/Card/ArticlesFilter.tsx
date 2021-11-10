@@ -16,15 +16,15 @@ const tabList: Array<TabListType> = [
   },
   {
     key: 'byRating',
-    tab: 'Most popular',
+    tab: 'Popular',
   },
   {
     key: 'byDate',
-    tab: 'Fresh',
+    tab: 'New',
   },
   {
     key: 'byFollowing',
-    tab: 'Tracked',
+    tab: 'Followed',
   },
 ];
 
@@ -45,6 +45,7 @@ export const ArticlesFilter: React.FC = () => {
         onTabChange={(key: string) => {
           onTabChange(key);
         }}
+        bodyStyle={{ paddingBottom: 0 }}
       >
         <Link to={routesName.SEARCH}>
           <p style={{ textAlign: 'right' }}>To search</p>

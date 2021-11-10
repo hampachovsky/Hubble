@@ -19,6 +19,15 @@ export enum routesName {
   SEARCH = '/search',
 }
 
+export enum profileRoutesName {
+  ARTICLES = '/profile/',
+  COMMENTS = '/profile/:id/comments',
+  ARCHIVED = '/profile/:id/archived',
+  RATED = '/profile/:id/rated',
+  SUBSCRIBERS = '/profile/:id/subscribers',
+  SUBSCRIPTION = '/profile/:id/subscriptions',
+}
+
 export const publicRoutes: IRoute[] = [
   {
     path: routesName.LOGIN,
