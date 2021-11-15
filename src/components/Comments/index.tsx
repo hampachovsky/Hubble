@@ -22,13 +22,13 @@ export const Comments: React.FC = () => {
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState<string | null>(null);
 
-  const like = () => {
+  const handleLike = () => {
     setLikes(1);
     setDislikes(0);
     setAction('liked');
   };
 
-  const dislike = () => {
+  const handleDislike = () => {
     setLikes(0);
     setDislikes(1);
     setAction('disliked');
@@ -36,13 +36,13 @@ export const Comments: React.FC = () => {
 
   const actions = [
     <Tooltip key='comment-basic-like' title='Like'>
-      <span className={style.commentAction} onClick={like}>
+      <span className={style.commentAction} onClick={handleLike}>
         {createElement(action === 'liked' ? LikeFilled : LikeOutlined)}
         <span className='comment-action'>{likes}</span>
       </span>
     </Tooltip>,
     <Tooltip key='comment-basic-dislike' title='Dislike'>
-      <span className={style.commentAction} onClick={dislike}>
+      <span className={style.commentAction} onClick={handleDislike}>
         {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined)}
         <span>{dislikes}</span>
       </span>

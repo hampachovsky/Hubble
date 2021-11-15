@@ -4,12 +4,21 @@ import logoUrl from 'assets/logo.svg';
 import LogoutSvg from 'assets/logout.svg';
 import SearchSvg from 'assets/search.svg';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { routesName } from 'router/routes';
+import { signOut } from 'store/reducers/user/actionCreators';
 import style from './Navbar.module.less';
 
 export const Navbar: React.FC = () => {
   const router = useHistory();
+  const dispatch = useDispatch();
+
+  const handleSignOut = (): any => {
+    dispatch(signOut());
+    window.localStorage.removeItem('token');
+    router.push(routesName.LOGIN);
+  };
 
   return (
     <Layout.Header className={style.header}>
@@ -48,11 +57,7 @@ export const Navbar: React.FC = () => {
                 U
               </Avatar>
             </Menu.Item>
-            <Menu.Item
-              className={style.menuItem}
-              key={3}
-              onClick={() => router.push(routesName.LOGIN)}
-            >
+            <Menu.Item className={style.menuItem} key={3} onClick={handleSignOut}>
               <img src={LogoutSvg} className={style.icon} alt='search' />
             </Menu.Item>
           </Menu>

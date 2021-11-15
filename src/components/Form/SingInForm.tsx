@@ -1,9 +1,14 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Space, Typography } from 'antd';
 import { useFormik } from 'formik';
+import { useAppSelector } from 'hooks/useAppSelector';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { SignInRequestType } from 'services/AuthAPI';
+import { fetchSignIn } from 'store/reducers/user/actionCreators';
 import * as yup from 'yup';
+import { ErrorMessage } from './ErrorMessage';
 import style from './Form.module.less';
 import { FormField } from './FormField';
 
@@ -13,30 +18,30 @@ const validationSchema = yup.object().shape({
   rememberMe: yup.boolean(),
 });
 
-type FormInitialValuesType = {
-  username: string;
-  password: string;
-  rememberMe: boolean;
-};
-
 export const SingInForm: React.FC = () => {
+  const dispatch = useDispatch();
+  const formError = useAppSelector((state) => state.userReducer.error);
+  const isLoading = useAppSelector((state) => state.userReducer.isLoading);
+
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
       rememberMe: false,
-    } as FormInitialValuesType,
+    } as SignInRequestType,
     validationSchema: validationSchema,
     validateOnBlur: true,
     onSubmit: (values, actions) => {
-      console.log(values);
+      dispatch(fetchSignIn(values));
       actions.setSubmitting(false);
     },
   });
+
   return (
     <div className={style.formWrapper}>
       <form className={style.form} onSubmit={formik.handleSubmit}>
         <Space align='center' direction='vertical'>
+          <div>{formError && <ErrorMessage error={formError} />}</div>
           <FormField
             touched={formik.touched.username}
             error={formik.errors.username}
@@ -67,6 +72,7 @@ export const SingInForm: React.FC = () => {
             size='large'
             type='primary'
             htmlType='submit'
+            loading={isLoading}
           >
             Log in
           </Button>

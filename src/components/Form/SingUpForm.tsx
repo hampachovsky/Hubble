@@ -1,9 +1,14 @@
 import { LockOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Space, Typography } from 'antd';
 import { useFormik } from 'formik';
+import { useAppSelector } from 'hooks/useAppSelector';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { SignUpRequestType } from 'services/AuthAPI';
+import { fetchSignUp } from 'store/reducers/user/actionCreators';
 import * as yup from 'yup';
+import { ErrorMessage } from './ErrorMessage';
 import style from './Form.module.less';
 import { FormField } from './FormField';
 
@@ -12,7 +17,7 @@ let validationSchema = yup.object().shape({
     .string()
     .strict()
     .trim('Username must be a trimmed string')
-    .min(6, 'Please enter a username (min 6 characters).')
+    .min(3, 'Please enter a username (min 3 characters).')
     .max(20, 'Please enter a username (max 20 characters).')
     .required('Please enter a username'),
 
@@ -31,32 +36,30 @@ let validationSchema = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
-type TFormInitialValues = {
-  email: string;
-  password: string;
-  username: string;
-  passwordConfirmation: string;
-};
-
 export const SingUpForm: React.FC = () => {
+  const dispatch = useDispatch();
+  const router = useHistory();
+  const isLoading = useAppSelector((state) => state.userReducer.isLoading);
+  const formError = useAppSelector((state) => state.userReducer.error);
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
-      username: '',
-      passwordConfirmation: '',
-    } as TFormInitialValues,
+      email: 'test@mail.com',
+      username: 'admintttt',
+      password: 'adminadmin',
+      passwordConfirmation: 'adminadmin',
+    } as SignUpRequestType,
     validationSchema: validationSchema,
     validateOnBlur: true,
-    onSubmit: (values, actions) => {
-      console.log(values.username.replace(/\s/g, ''));
-      actions.setSubmitting(false);
+    onSubmit: async (values, actions) => {
+      dispatch(fetchSignUp(values));
+      isLoading && formError === null && router.push('/login');
     },
   });
   return (
     <div className={style.formWrapper}>
       <form className={style.form} onSubmit={formik.handleSubmit}>
         <Space align='center' direction='vertical'>
+          <div>{formError && <ErrorMessage error={formError} />}</div>
           <FormField
             touched={formik.touched.email}
             error={formik.errors.email}
@@ -101,6 +104,7 @@ export const SingUpForm: React.FC = () => {
           />
           <Button
             disabled={!formik.dirty || !formik.isValid || formik.isSubmitting}
+            loading={isLoading}
             className={style.submitBtn}
             size='large'
             type='primary'

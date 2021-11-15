@@ -1,6 +1,7 @@
-import { Input, Typography } from 'antd';
+import { Input } from 'antd';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import React, { ChangeEvent, FocusEvent } from 'react';
+import { ErrorMessage } from './ErrorMessage';
 import style from './Form.module.less';
 
 type PropsType = {
@@ -30,13 +31,7 @@ export const FormField: React.FC<PropsType> = ({
 }) => {
   return (
     <>
-      <div style={{ textAlign: 'center', width: 230 }}>
-        {touched ? (
-          <Typography.Text type='danger' strong>
-            {error}
-          </Typography.Text>
-        ) : null}
-      </div>
+      {touched && error ? <ErrorMessage error={error} /> : null}
       {type === 'password' ? (
         <Input.Password
           type={type}

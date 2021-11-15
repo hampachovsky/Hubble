@@ -2,12 +2,13 @@ import { Layout } from 'antd';
 import { Navbar } from 'components/Navbar';
 import { PrivateAppRouter } from 'components/PrivateAppRouter';
 import { PublicAppRouter } from 'components/PublicAppRouter';
+import { useAppSelector } from 'hooks/useAppSelector';
 import React from 'react';
 import './App.less';
 const { Content } = Layout;
 
 function App() {
-  const isAuth = true;
+  const isAuth = useAppSelector((state) => state.userReducer.isAuth);
   return (
     <Layout>
       {isAuth ? (
