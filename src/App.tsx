@@ -1,15 +1,26 @@
 import { Layout } from 'antd';
+import { Preloader } from 'components/common/Preloader';
 import { Navbar } from 'components/Navbar';
 import { PrivateAppRouter } from 'components/PrivateAppRouter';
 import { PublicAppRouter } from 'components/PublicAppRouter';
 import { useAppSelector } from 'hooks/useAppSelector';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchUserData } from 'store/reducers/user/actionCreators';
 import './App.less';
 const { Content } = Layout;
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUserData());
+  }, [dispatch]);
   const isAuth = useAppSelector((state) => state.userReducer.isAuth);
-  return (
+  const isLoading = useAppSelector((state) => state.userReducer.isLoading);
+
+  return isLoading ? (
+    <Preloader />
+  ) : (
     <Layout>
       {isAuth ? (
         <>

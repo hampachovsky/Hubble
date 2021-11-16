@@ -1,5 +1,6 @@
 import { Input } from 'antd';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import clsx from 'clsx';
 import React, { ChangeEvent, FocusEvent } from 'react';
 import { ErrorMessage } from './ErrorMessage';
 import style from './Form.module.less';
@@ -35,7 +36,7 @@ export const FormField: React.FC<PropsType> = ({
       {type === 'password' ? (
         <Input.Password
           type={type}
-          className={style.field}
+          className={clsx(style.field, touched && error && style.fieldError)}
           prefix={icon}
           name={name}
           placeholder={placeholder}
@@ -47,7 +48,7 @@ export const FormField: React.FC<PropsType> = ({
       ) : (
         <Input
           type={type}
-          className={style.field}
+          className={clsx(style.field, touched && error && style.fieldError)}
           prefix={icon}
           name={name}
           placeholder={placeholder}

@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { SignInRequestType } from 'services/AuthAPI';
 import { fetchSignIn } from 'store/reducers/user/actionCreators';
+import { selectIsLoading } from 'store/reducers/user/selector';
 import * as yup from 'yup';
 import { ErrorMessage } from './ErrorMessage';
 import style from './Form.module.less';
@@ -21,7 +22,7 @@ const validationSchema = yup.object().shape({
 export const SingInForm: React.FC = () => {
   const dispatch = useDispatch();
   const formError = useAppSelector((state) => state.userReducer.error);
-  const isLoading = useAppSelector((state) => state.userReducer.isLoading);
+  const isLoading = useAppSelector((state) => selectIsLoading(state));
 
   const formik = useFormik({
     initialValues: {

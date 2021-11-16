@@ -6,7 +6,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { SignUpRequestType } from 'services/AuthAPI';
-import { fetchSignUp } from 'store/reducers/user/actionCreators';
+import { fetchSignUp, setLoadingState } from 'store/reducers/user/actionCreators';
+import { selectIsLoading, selectIsSuccess } from 'store/reducers/user/selector';
+import { LoadingState } from 'store/reducers/user/types';
 import * as yup from 'yup';
 import { ErrorMessage } from './ErrorMessage';
 import style from './Form.module.less';
@@ -39,22 +41,29 @@ let validationSchema = yup.object().shape({
 export const SingUpForm: React.FC = () => {
   const dispatch = useDispatch();
   const router = useHistory();
-  const isLoading = useAppSelector((state) => state.userReducer.isLoading);
+  const isLoading = useAppSelector((state) => selectIsLoading(state));
+  const isSuccess = useAppSelector((state) => selectIsSuccess(state));
   const formError = useAppSelector((state) => state.userReducer.error);
   const formik = useFormik({
     initialValues: {
-      email: 'test@mail.com',
-      username: 'admintttt',
-      password: 'adminadmin',
-      passwordConfirmation: 'adminadmin',
+      email: '',
+      username: '',
+      password: '',
+      passwordConfirmation: '',
     } as SignUpRequestType,
     validationSchema: validationSchema,
     validateOnBlur: true,
-    onSubmit: async (values, actions) => {
+    onSubmit: (values, actions) => {
       dispatch(fetchSignUp(values));
-      isLoading && formError === null && router.push('/login');
+      actions.setSubmitting(false);
     },
   });
+
+  if (isSuccess) {
+    router.push('/login');
+    dispatch(setLoadingState(LoadingState.INITIAL));
+  }
+
   return (
     <div className={style.formWrapper}>
       <form className={style.form} onSubmit={formik.handleSubmit}>

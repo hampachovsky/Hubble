@@ -26,4 +26,7 @@ export class AuthAPI {
   static async signUp(payload: SignUpRequestType): Promise<AxiosResponse> {
     return instance.post('/users/signup', payload);
   }
+  static async authMe(): Promise<AxiosResponse> {
+    return instance.get('/auth/me');
+  }
 }

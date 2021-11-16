@@ -2,9 +2,12 @@ import { SignInRequestType, SignUpRequestType } from 'services/AuthAPI';
 import {
   FetchSignInAction,
   FetchSignUpAction,
+  FetchUserDataAction,
+  LoadingState,
   SetErrorAction,
   SetIsAuthAction,
   SetIsLoadingAction,
+  SetLoadingStateAction,
   SetUserDataAction,
   SignOutAction,
   UserActionType,
@@ -18,6 +21,10 @@ export const setUserData = (payload: UserState['data']): SetUserDataAction => ({
 
 export const setIsAuth = (payload: boolean): SetIsAuthAction => ({
   type: UserActionType.SET_IS_AUTH,
+  payload,
+});
+export const setLoadingState = (payload: LoadingState): SetLoadingStateAction => ({
+  type: UserActionType.SET_LOADING_STATE,
   payload,
 });
 
@@ -39,6 +46,10 @@ export const fetchSignIn = (payload: SignInRequestType): FetchSignInAction => ({
 export const fetchSignUp = (payload: SignUpRequestType): FetchSignUpAction => ({
   type: UserActionType.FETCH_SIGN_UP,
   payload,
+});
+
+export const fetchUserData = (): FetchUserDataAction => ({
+  type: UserActionType.FETCH_USER_DATA,
 });
 
 export const signOut = (): SignOutAction => ({

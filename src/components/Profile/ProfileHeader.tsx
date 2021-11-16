@@ -23,7 +23,7 @@ export const ProfileHeader: React.FC = () => {
             <Tooltip title='Settings'>
               <Button shape='circle' icon={<SettingOutlined />} />
             </Tooltip>
-            <Tooltip title='Settings'>
+            <Tooltip title='Subscribe'>
               <Button shape='round' icon={<UserAddOutlined />}>
                 Subscribe
               </Button>
