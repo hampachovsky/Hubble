@@ -113,7 +113,9 @@ export const Comments: React.FC = () => {
                     Han Solo {item}
                   </Link>
                 }
-                avatar={<Avatar src='https://joeschmoe.io/api/v1/random' alt='Han Solo' />}
+                avatar={
+                  <Avatar shape='square' src='https://joeschmoe.io/api/v1/random' alt='Han Solo' />
+                }
                 content={<p>We supply a series of design principles.</p>}
               />
             </Comment>

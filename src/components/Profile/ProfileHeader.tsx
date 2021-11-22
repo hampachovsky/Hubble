@@ -1,4 +1,4 @@
-import { SettingOutlined, UserAddOutlined } from '@ant-design/icons';
+import { EditOutlined, SettingOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Avatar, Button, Card, Col, Row, Tabs, Tooltip, Typography } from 'antd';
 import React from 'react';
 import { useHistory } from 'react-router';
@@ -11,7 +11,7 @@ export const ProfileHeader: React.FC = () => {
     <div>
       <Card className={style.profileHeader} bodyStyle={{ paddingBottom: 0 }}>
         <Row>
-          <Col className={style.leftSide} span={12}>
+          <Col className={style.leftSide} span={10}>
             <Avatar size={100} shape='square'>
               U
             </Avatar>
@@ -19,9 +19,12 @@ export const ProfileHeader: React.FC = () => {
               User Name
             </Typography.Title>
           </Col>
-          <Col className={style.rightSide} span={12}>
+          <Col className={style.rightSide} span={14}>
             <Tooltip title='Settings'>
               <Button shape='circle' icon={<SettingOutlined />} />
+            </Tooltip>
+            <Tooltip title='Write article'>
+              <Button shape='circle' icon={<EditOutlined />} />
             </Tooltip>
             <Tooltip title='Subscribe'>
               <Button shape='round' icon={<UserAddOutlined />}>
@@ -38,12 +41,12 @@ export const ProfileHeader: React.FC = () => {
           tabBarStyle={{ marginBottom: 0 }}
           onTabClick={(key) => router.push(key)}
         >
-          <Tabs.TabPane tab='Articles' key={profileRoutesName.ARTICLES}></Tabs.TabPane>
-          <Tabs.TabPane tab='Comments' key={profileRoutesName.COMMENTS}></Tabs.TabPane>
-          <Tabs.TabPane tab='Archived' key={profileRoutesName.ARCHIVED}></Tabs.TabPane>
-          <Tabs.TabPane tab='Rated' key={profileRoutesName.RATED}></Tabs.TabPane>
-          <Tabs.TabPane tab='Subscriptions' key={profileRoutesName.SUBSCRIPTION}></Tabs.TabPane>
-          <Tabs.TabPane tab='Subscribers' key={profileRoutesName.SUBSCRIBERS}></Tabs.TabPane>
+          <Tabs.TabPane tab='Articles' key={profileRoutesName.ARTICLES} />
+          <Tabs.TabPane tab='Comments' key={profileRoutesName.COMMENTS} />
+          <Tabs.TabPane tab='Archived' key={profileRoutesName.ARCHIVED} />
+          <Tabs.TabPane tab='Rated' key={profileRoutesName.RATED} />
+          <Tabs.TabPane tab='Subscriptions' key={profileRoutesName.SUBSCRIPTION} />
+          <Tabs.TabPane tab='Subscribers' key={profileRoutesName.SUBSCRIBERS} />
         </Tabs>
       </Card>
     </div>

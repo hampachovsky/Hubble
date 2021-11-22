@@ -12,6 +12,7 @@ export const ArticleHeader: React.FC = () => {
       <Link to={routesName.PROFILE}>
         <div className={style.userInfo}>
           <Avatar shape='square'>U</Avatar>
+
           <Title level={4} className={style.userName}>
             Author
           </Title>
