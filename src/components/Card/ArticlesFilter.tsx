@@ -31,7 +31,7 @@ const tabList: Array<TabListType> = [
 export const ArticlesFilter: React.FC = () => {
   const [activeTab, setActiveTab] = useState('all');
 
-  const onTabChange = (key: string) => {
+  const handleTabChange = (key: string) => {
     setActiveTab(key);
   };
 
@@ -43,7 +43,7 @@ export const ArticlesFilter: React.FC = () => {
         tabList={tabList}
         activeTabKey={activeTab}
         onTabChange={(key: string) => {
-          onTabChange(key);
+          handleTabChange(key);
         }}
         bodyStyle={{ paddingBottom: 0 }}
       >

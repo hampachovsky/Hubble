@@ -1,14 +1,21 @@
 import { EditOutlined, SettingOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Avatar, Button, Card, Col, Row, Tabs, Tooltip, Typography } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { profileRoutesName } from 'router/routes';
 import style from './Profile.module.less';
+import { WriteArticleModal } from './WriteArticleModal';
 
 export const ProfileHeader: React.FC = () => {
+  const [visible, setVisible] = useState(false);
+
+  const toggleModal = () => {
+    setVisible(!visible);
+  };
   const router = useHistory();
   return (
     <div>
+      {visible && <WriteArticleModal visible={visible} toggleModal={toggleModal} />}
       <Card className={style.profileHeader} bodyStyle={{ paddingBottom: 0 }}>
         <Row>
           <Col className={style.leftSide} span={10}>
@@ -24,7 +31,7 @@ export const ProfileHeader: React.FC = () => {
               <Button shape='circle' icon={<SettingOutlined />} />
             </Tooltip>
             <Tooltip title='Write article'>
-              <Button shape='circle' icon={<EditOutlined />} />
+              <Button onClick={toggleModal} shape='circle' icon={<EditOutlined />} />
             </Tooltip>
             <Tooltip title='Subscribe'>
               <Button shape='round' icon={<UserAddOutlined />}>
