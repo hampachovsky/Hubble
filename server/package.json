@@ -1,0 +1,36 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js",
+        "DANGEROUS_db-drop": "node ./src/utils/drop.js",
+        "DANGEROUS_db-seed": "node ./src/utils/seeder.js",
+        "format:check": "prettier --check .",
+        "format:write": "prettier --write .",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint --fix ."
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "faker": "^5.5.3",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.4.0"
+    },
+    "devDependencies": {
+        "eslint": "^8.25.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jsx-a11y": "^6.6.1",
+        "lorem-ipsum": "^2.0.4",
+        "nodemon": "^2.0.16",
+        "prettier": "^2.7.1"
+    }
+}
