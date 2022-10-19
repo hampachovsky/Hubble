@@ -9,9 +9,27 @@
         "ecmaVersion": 12,
         "sourceType": "module"
     },
+    "settings": {
+      "import/resolver": {
+          "node": {
+              "extensions": [".js", ".jsx", ".ts", ".tsx"],
+              "moduleDirectory": ["node_modules", "src/"]
+          }
+      }
+  },
     "rules": {
         "no-console": "warn",
         "no-unused-vars": "warn",
-        "no-var": "error"
+        "no-var": "error",
+          "import/extensions": [
+             0,
+             "ignorePackages",
+             {
+               "js": "never",
+               "jsx": "never",
+               "ts": "never",
+               "tsx": "never"
+             }
+          ]
     }
 }
