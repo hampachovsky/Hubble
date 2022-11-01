@@ -3,13 +3,19 @@ import Category from '../models/Category.js';
 const categoryController = {
     async getAll(req, res) {
         try {
+<<<<<<< category
             const category = await Category.find();
             return res.status(200).json(category);
+=======
+            const users = await Category.find();
+            return res.status(200).json(users);
+
         } catch (e) {
             console.log(e);
             return res.status(400).json({ error: 'failed  take category' });
         }
     },
+<<<<<<< category
     async create(req, res) {
         try {
             const { categoryName } = req.body;
@@ -57,6 +63,8 @@ const categoryController = {
             return res.status(500).json({ error: 'Update category error' });
         }
     },
+=======
+>>>>>>> main
 };
 
 export default categoryController;
