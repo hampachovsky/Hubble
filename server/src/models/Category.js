@@ -4,7 +4,7 @@ const categorySchema = new mongoose.Schema({
     categoryName: {
         type: String,
         required: true,
-        minLength: 3,
+        minLength: 1,
     },
     createdAt: {
         type: Date,
@@ -22,6 +22,7 @@ const categorySchema = new mongoose.Schema({
 categorySchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString();
+        delete returnedObject._id;
         delete returnedObject.__v;
         delete returnedObject.createdAt;
     },
