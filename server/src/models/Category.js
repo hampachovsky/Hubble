@@ -5,8 +5,6 @@ const categorySchema = new mongoose.Schema({
         type: String,
         required: true,
         minLength: 1,
-
-
     },
     createdAt: {
         type: Date,

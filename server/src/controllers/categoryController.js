@@ -5,9 +5,6 @@ const categoryController = {
         try {
             const category = await Category.find();
             return res.status(200).json(category);
-            const users = await Category.find();
-            return res.status(200).json(users);
-
         } catch (e) {
             console.log(e);
             return res.status(400).json({ error: 'failed  take category' });
