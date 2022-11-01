@@ -4,12 +4,15 @@ import mongoose from 'mongoose';
 import { MONGODB_URI, PORT } from './src/config/index.js';
 import tokenExtractor from './src/middleware/tokenExtractor.js';
 import unknownEndpoint from './src/middleware/unknowEndpoint.js';
+import router from './src/routes/index.js';
 
 // basic configuration
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(tokenExtractor);
+
+app.use('/api', router);
 
 // if routes not found
 app.use(unknownEndpoint);
