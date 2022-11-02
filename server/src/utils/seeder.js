@@ -18,6 +18,7 @@ const categoryNames = [
     'Crypto',
     'Music',
     'Films and Serial',
+    'Other',
 ];
 
 const getTags = (tags) => {
@@ -77,13 +78,14 @@ const seeder = async () => {
     for (let i = 0; i < articleAuthors.length - 1; i++) {
         const password = faker.lorem.word(random(4, 10));
         const passwordHash = bcrypt.hashSync(password, 10);
+        const name = faker.name.findName();
         const articles = [];
         for (let j = 0; j < 10; j++) {
             // fills users with articles
             articles.push(articlesToInsert[i * 10 + j]);
         }
         const objToAdd = {
-            username: faker.name.findName(),
+            username: faker.internet.userName(name),
             password: passwordHash,
             articles,
             likedArticles: [],

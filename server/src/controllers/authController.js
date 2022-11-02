@@ -52,6 +52,16 @@ const authController = {
             return res.status(400).json({ error: 'Authorization error' });
         }
     },
+    async getById(req, res) {
+        try {
+            const user = await User.findById(req.params.id);
+            if (!user) res.status(404).json({ error: 'User not found' });
+            return res.status(200).json(user);
+        } catch (e) {
+            console.log(e);
+            return res.status(400).json({ error: 'failed  take user' });
+        }
+    },
     async getMe(req, res) {
         try {
             const userFromToken = req.user;
