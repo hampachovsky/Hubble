@@ -95,13 +95,7 @@ const commentController = {
                 // both ids must be ObjectId
                 return res.status(500).json({ error: "User haven't liked this comment" });
             }
-            /*       const likedComment = {
-                ...commentToUpdate,
-                likes: commentToUpdate.likes - 1,
-                likedBy: commentToUpdate.likedBy.filter(
-                    (e) => e.toString() !== userWhoLikes._id.toString(),
-                ),
-            }; */
+
             try {
                 userWhoLikes.likedComments = userWhoLikes.likedComments.filter(
                     (a) => a._id.toString() !== commentToUpdate._id.toString(),

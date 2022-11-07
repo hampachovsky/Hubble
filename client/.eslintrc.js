@@ -24,7 +24,7 @@ module.exports = {
         tsconfigRootDir: __dirname,
     },
     plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
-    ignorePatterns: ['.eslintrc.js'],
+    ignorePatterns: ['.eslintrc.js', 'craco.config.js'],
     settings: {
         'import/resolver': {
             node: {
@@ -37,7 +37,10 @@ module.exports = {
         'linebreak-style': 'off',
         'react/jsx-props-no-spreading': 'off',
         'react/prop-types': 'off',
+        'import/prefer-default-export': 'off',
         'no-param-reassign': ['error', { props: false }],
+        'react/function-component-definition': 'off',
+        'react/self-closing-comp': 'off',
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
         'prettier/prettier': [
             'error',
@@ -46,5 +49,6 @@ module.exports = {
                 trailingComma: 'all',
             },
         ],
+        'import/extensions': 'off',
     },
 };

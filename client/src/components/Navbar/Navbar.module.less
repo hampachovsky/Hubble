@@ -1,0 +1,44 @@
+@import 'styles/variables.less';
+
+.header {
+  position: fixed;
+  z-index: 1;
+  background: #fff;
+  box-shadow: 0 2px 8px @secondary-theme-color;
+  width: 100%;
+  padding: 0 !important;
+
+  .nav {
+    border: 0 !important;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    .menuItem {
+      display: flex;
+      align-items: center;
+      &:hover {
+        background-color: @secondary-theme-color !important;
+      }
+      .icon {
+        font-size: 24px;
+        height: 30px;
+        color: white !important;
+      }
+    }
+  }
+
+  .logoWrap {
+    display: flex;
+    align-items: center;
+    width: 160px;
+    height: 64px;
+    padding-top: 0.75em;
+  }
+
+  .logo {
+    width: 140px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
