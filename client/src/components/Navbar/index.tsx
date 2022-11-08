@@ -1,8 +1,8 @@
 import { MenuOutlined } from '@ant-design/icons';
-import { Avatar, Col, Image, Layout, Menu, Row, MenuProps } from 'antd';
+import { Col, Image, Layout, Menu, Row, MenuProps } from 'antd';
 import logoUrl from 'assets/logo.svg';
+import { RoutesPath } from 'constants/routes';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import style from './Navbar.module.less';
 
@@ -17,11 +17,15 @@ export const Navbar: React.FC = () => {
     const [current, setCurrent] = useState(location.pathname);
 
     const menuItems: MenuProps['items'] = [
-        { label: 'articles', key: '/', onClick: () => navigate('/articles', { replace: true }) },
+        {
+            label: 'articles',
+            key: RoutesPath.ARTICLES,
+            onClick: () => navigate(RoutesPath.ARTICLES, { replace: true }),
+        },
         {
             label: 'profile',
-            key: '/events',
-            onClick: () => navigate('/profile', { replace: true }),
+            key: RoutesPath.PROFILE,
+            onClick: () => navigate(RoutesPath.PROFILE, { replace: true }),
         },
         {
             label: `logout (username)`,
@@ -38,17 +42,12 @@ export const Navbar: React.FC = () => {
     return (
         <Layout.Header className={style.header}>
             <Row justify='space-around' className={style.row}>
-                <Col span={5}>
-                    <Link to='/' className={style.logoWrap}>
-                        <Image
-                            onClick={() => navigate('/')}
-                            className={style.logo}
-                            preview={false}
-                            src={logoUrl}
-                        />
+                <Col span={3}>
+                    <Link to={RoutesPath.ARTICLES} className={style.logoWrap}>
+                        <Image className={style.logo} preview={false} src={logoUrl} />
                     </Link>
                 </Col>
-                <Col className={style.menuRow} span={16}>
+                <Col className={style.menuRow} span={14}>
                     <Menu
                         className={style.nav}
                         theme='dark'
@@ -56,19 +55,7 @@ export const Navbar: React.FC = () => {
                         selectable={false}
                         overflowedIndicator={<MenuOutlined style={{ fontSize: '20px' }} />}
                         items={menuItems}
-                    >
-                        {/*   <Menu.Item className={style.menuItem} key={1}>
-                            Profile
-                        </Menu.Item>
-                        <Menu.Item
-                            className={style.menuItem}
-                            key={2}
-                            onClick={() => navigate('/profile')}
-                        ></Menu.Item>
-                        <Menu.Item className={style.menuItem} key={3} onClick={handleSignOut}>
-                            Logout
-                        </Menu.Item> */}
-                    </Menu>
+                    ></Menu>
                 </Col>
             </Row>
         </Layout.Header>

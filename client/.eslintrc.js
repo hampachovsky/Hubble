@@ -40,7 +40,10 @@ module.exports = {
         'import/prefer-default-export': 'off',
         'no-param-reassign': ['error', { props: false }],
         'react/function-component-definition': 'off',
+        'import/no-unresolved': 'off',
         'react/self-closing-comp': 'off',
+        'no-shadow': 'off',
+        '@typescript-eslint/no-shadow': ['error'],
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
         'prettier/prettier': [
             'error',
