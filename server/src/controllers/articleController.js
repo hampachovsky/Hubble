@@ -5,7 +5,10 @@ import Category from '../models/Category.js';
 const articleController = {
     async getAll(req, res) {
         try {
-            const articles = await Article.find().populate('category');
+            const articles = await Article.find().populate([
+                'category',
+                { path: 'author', select: 'username' },
+            ]);
             return res.status(200).json(articles);
         } catch (e) {
             console.log(e);
@@ -15,7 +18,10 @@ const articleController = {
     async getById(req, res) {
         const { id } = req.params;
         try {
-            const article = await Article.findById(id).populate(['category', 'author']);
+            const article = await Article.findById(id).populate([
+                'category',
+                { path: 'author', select: 'username' },
+            ]);
             if (!article) return res.status(500).json({ error: 'Article not found' });
             return res.status(200).json(article);
         } catch (e) {

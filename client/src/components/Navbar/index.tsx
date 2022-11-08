@@ -2,16 +2,22 @@ import { MenuOutlined } from '@ant-design/icons';
 import { Col, Image, Layout, Menu, Row, MenuProps } from 'antd';
 import logoUrl from 'assets/logo.svg';
 import { RoutesPath } from 'constants/routes';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { logout } from 'store/slices/userSlice/userSlice';
 import style from './Navbar.module.less';
 
 export const Navbar: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const username = useAppSelector((state) => state.userReducer.user?.username);
+    const dispatch = useAppDispatch();
 
     const handleSignOut = (): any => {
-        navigate('/login');
+        navigate(RoutesPath.LOGIN, { replace: true });
+        // TODO: ADD HERE RESET ALL STATE...
+        dispatch(logout());
     };
 
     const [current, setCurrent] = useState(location.pathname);
@@ -28,10 +34,10 @@ export const Navbar: React.FC = () => {
             onClick: () => navigate(RoutesPath.PROFILE, { replace: true }),
         },
         {
-            label: `logout (username)`,
+            label: `logout (${username})`,
             key: 'logout',
             onClick: () => {
-                navigate('logout', { replace: true });
+                handleSignOut();
             },
         },
     ];
@@ -51,6 +57,7 @@ export const Navbar: React.FC = () => {
                     <Menu
                         className={style.nav}
                         theme='dark'
+                        onClick={onClick}
                         mode='horizontal'
                         selectable={false}
                         overflowedIndicator={<MenuOutlined style={{ fontSize: '20px' }} />}

@@ -1,8 +1,9 @@
 import React from 'react';
 import { PublicLayout } from 'components/Layout/PublicLayout';
+import { SignUpForm } from './components/SignUpForm';
 
 export const Register: React.FC = () => (
     <PublicLayout>
-        <h1>Register page</h1>
+        <SignUpForm />
     </PublicLayout>
 );

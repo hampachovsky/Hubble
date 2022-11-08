@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.less';
 import { Route, Routes } from 'react-router-dom';
 import { RoutesPath } from 'constants/routes';
@@ -7,9 +7,22 @@ import { Register } from 'pages/Register';
 import { Profile } from 'pages/Profile';
 import { Articles } from 'pages/Articles';
 import { Article } from 'pages/Article';
+import { fetchUserData } from 'store/slices/userSlice/thunk';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { selectUserIsLoading } from 'store/slices/userSlice/selectors';
+import { Preloader } from 'components/common/Preloader';
 
 function App() {
-    return (
+    const dispatch = useAppDispatch();
+    const isLoading = useAppSelector(selectUserIsLoading);
+
+    useEffect(() => {
+        dispatch(fetchUserData());
+    }, [dispatch]);
+
+    return isLoading ? (
+        <Preloader />
+    ) : (
         <Routes>
             <Route path={RoutesPath.LOGIN} element={<Login />} />
             <Route path={RoutesPath.REGISTER} element={<Register />} />

@@ -2,7 +2,7 @@ import { UpOutlined } from '@ant-design/icons';
 import { BackTop } from 'antd';
 import React from 'react';
 
-export const BackToTop = () => (
+export const BackToTop: React.FC = () => (
     <BackTop>
         <div
             style={{

@@ -6,7 +6,6 @@ const authController = {
     async register(req, res) {
         try {
             const { username, password } = req.body;
-            console.log(username, password);
             if (username.length < 4 || username.length > 32) {
                 return res
                     .status(400)

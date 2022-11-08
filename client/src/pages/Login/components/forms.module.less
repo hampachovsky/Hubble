@@ -1,0 +1,44 @@
+@import 'src/styles/variables.less';
+
+.formWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+}
+
+.field {
+  text-transform: none;
+  height: @form-item-height !important;
+  line-height: @form-item-height !important;
+  width: @form-item-width !important;
+  padding: 0 20px;
+  font-size: 15px;
+  box-sizing: border-box;
+  font-weight: 400;
+  opacity: 1;
+  margin-bottom: 0.5rem;
+  box-shadow: none !important;
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.submitBtn {
+  width: @form-item-width;
+  color: rgb(255, 255, 255);
+  padding: 0;
+  font-size: 1.25rem !important;
+  line-height: 1.25rem !important;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  overflow: visible;
+  font: inherit;
+
+}
