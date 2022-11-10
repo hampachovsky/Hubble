@@ -14,3 +14,6 @@ export enum AuthApiRoutes {
     REGISTER = '/auth/register',
     AUTH_ME = '/auth/me',
 }
+export enum CategoryApiRoutes {
+    GET_ALL = '/category/all',
+}

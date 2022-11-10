@@ -1,0 +1,27 @@
+@import 'styles/variables.less';
+
+.siderContainer {
+  position: 'relative';
+  min-height: '100px';
+}
+
+.siderMenu {
+  background-color: @bg-color;
+  font-size: 16px;
+  font-weight: 500;
+  color: @basket-black !important;
+
+
+  &:hover {
+    color: @basket-dark-blue !important;
+  }
+  & > * {
+    margin: 0 !important;
+    box-shadow: inset;
+  }
+  // menu-items
+  & > *:not(:last-child) {
+    border-bottom: 1px solid @basket-light-blue !important;
+  }
+
+}

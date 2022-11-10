@@ -5,14 +5,14 @@ import { RoutesPath } from 'constants/routes';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { useClearUserError } from 'hooks/useClearUserError';
 import { LoadingStatus, SignUpPayload } from 'models/utilsTypes';
+import style from 'pages/Login/components/forms.module.less';
 import React, { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Link, Routes, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { selectUserIsLoading, selectUserStatusSuccess } from 'store/slices/userSlice/selectors';
+import { fetchSignUp } from 'store/slices/userSlice/thunk';
 import { setUserStatus } from 'store/slices/userSlice/userSlice';
 import * as yup from 'yup';
-import style from 'pages/Login/components/forms.module.less';
-import { fetchSignUp } from 'store/slices/userSlice/thunk';
 
 const validationSchema = yup
     .object()

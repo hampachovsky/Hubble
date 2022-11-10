@@ -47,3 +47,7 @@ export interface UserState extends State {
     user: IUser | null;
     isAuth: boolean;
 }
+
+export interface CategoryState extends State {
+    categories: ICategory[] | null;
+}

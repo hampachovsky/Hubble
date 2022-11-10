@@ -1,0 +1,12 @@
+@import 'styles/mixins.less';
+@import 'styles/variables.less';
+
+.cardWrapper {
+  width: @card-wrapper-width;
+  .card {
+    width: @card-desktop-width;
+    .tablet (@card-tablet-width);
+    .mobile (@card-mobile-width);
+    .ultraSmall (@card-ultra-small-width);
+  }
+}

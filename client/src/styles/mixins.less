@@ -1,0 +1,26 @@
+@import './variables.less';
+
+// CARD RESPOSNIVE MIXIN
+
+.tablet(@width) {
+  @media (max-width: @tablet-screen-width) {
+    width: @width !important;
+  }
+}
+
+.desktop(@width) {
+  @media (max-width: @desktop-screen-width) {
+    width: @width !important;
+  }
+}
+.mobile(@width) {
+  @media (max-width: @mobile-screen-width) {
+    width: @width !important;
+  }
+}
+
+.ultraSmall(@width) {
+  @media (max-width: @ultra-small-screen-width) {
+    width: @width !important;
+  }
+}
