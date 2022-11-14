@@ -3,11 +3,31 @@ import Category from '../models/Category.js';
 const categoryController = {
     async getAll(req, res) {
         try {
-            const category = await Category.find();
+            const category = await Category.find().select({ articles: 0 });
             return res.status(200).json(category);
         } catch (e) {
             console.log(e);
             return res.status(400).json({ error: 'failed  take category' });
+        }
+    },
+    async getById(req, res) {
+        const { id } = req.params;
+        try {
+            const category = await Category.findById(id).populate({
+                path: 'articles',
+                populate: {
+                    path: 'author',
+                    select: 'username',
+                },
+            });
+            if (!category) return res.status(500).json({ error: 'Article not found' });
+            category.articles = category.articles.sort(
+                (a, b) => new Date(b.created) - new Date(a.created),
+            );
+            return res.status(200).json(category);
+        } catch (e) {
+            console.log(e);
+            return res.status(400).json({ error: 'failed  take article' });
         }
     },
     async create(req, res) {

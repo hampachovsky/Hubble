@@ -5,6 +5,7 @@ import { RoutesPath } from 'constants/routes';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { resetArticlesState } from 'store/slices/articlesSlice/articlesSlice';
 import { resetCategoryState } from 'store/slices/categorySlice/categorySlice';
 import { logout } from 'store/slices/userSlice/userSlice';
 import style from './Navbar.module.less';
@@ -20,6 +21,7 @@ export const Navbar: React.FC = () => {
         // TODO: ADD HERE RESET ALL STATE...
         dispatch(logout());
         dispatch(resetCategoryState());
+        dispatch(resetArticlesState());
     };
 
     const [current, setCurrent] = useState(location.pathname);

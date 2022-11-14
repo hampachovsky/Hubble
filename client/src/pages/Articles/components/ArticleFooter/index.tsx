@@ -1,23 +1,27 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-import {
-    DislikeFilled,
-    DislikeOutlined,
-    LikeFilled,
-    LikeOutlined,
-    MessageOutlined,
-} from '@ant-design/icons';
+import { LikeFilled, LikeOutlined, MessageOutlined } from '@ant-design/icons';
 import { Col, Row, Space, Tooltip, Typography } from 'antd';
+import { useAppSelector } from 'hooks/redux';
+import { IArticle } from 'models/types';
 import React, { createElement, useState } from 'react';
 import style from './ArticleFooter.module.less';
 
 const { Text } = Typography;
 
-export const ArticleFooter: React.FC = () => {
-    const [likes, setLikes] = useState(0);
+type Props = {
+    likes: IArticle['likes'];
+    likedBy: IArticle['likedBy'];
+    comments: IArticle['comments'];
+};
+
+export const ArticleFooter: React.FC<Props> = ({ likes, likedBy, comments }) => {
+    const userId = useAppSelector((state) => state.userReducer.user?._id);
+
+    const [likesCount, setLikes] = useState(likes);
     const [isLiked, setIsLiked] = useState(false);
-    const [dislikes, setDislikes] = useState(0);
-    const [action, setAction] = useState<string | null>(null);
+    const [, setDislikes] = useState(0);
+    const [action, setAction] = useState<string | null>(
+        likedBy.includes(userId!) ? 'liked' : 'unliked',
+    );
     const handleLike = () => {
         setLikes(1);
         setDislikes(0);
@@ -35,7 +39,7 @@ export const ArticleFooter: React.FC = () => {
                 <Col span={14} className={style.leftControlls}>
                     <div className={style.controllItem}>
                         <MessageOutlined />
-                        <Text className={style.text}>23</Text>
+                        <Text className={style.text}>{comments.length}</Text>
                     </div>
                 </Col>
                 <Col span={10} className={style.rightControlls}>
@@ -46,7 +50,7 @@ export const ArticleFooter: React.FC = () => {
                             <LikeOutlined onClick={handleLike} />
                         )}
                     </Tooltip>
-                    <Text className={style.text}>{likes}</Text>
+                    <Text className={style.text}>{likesCount}</Text>
                 </Col>
             </Row>
         </div>

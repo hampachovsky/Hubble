@@ -1,7 +1,7 @@
 export enum RoutesPath {
     LOGIN = '/login',
     REGISTER = '/register',
-    PROFILE = '/profile',
+    PROFILE = '/profile/',
     ARTICLES = '/articles',
     COMMENTS = '/profile/:id/comments',
     RATED = '/profile/:id/rated',
@@ -16,4 +16,10 @@ export enum AuthApiRoutes {
 }
 export enum CategoryApiRoutes {
     GET_ALL = '/category/all',
+    GET_BY_ID = '/category/',
+}
+
+export enum ArticlesApiRoutes {
+    GET_ALL = '/articles/all',
+    CHANGE_LIKE = '/articles/',
 }

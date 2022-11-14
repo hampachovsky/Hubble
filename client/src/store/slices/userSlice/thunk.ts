@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authAPI } from 'api/authApi';
 import { RequestErrorType, SignInPayload, SignUpPayload } from 'models/utilsTypes';
+import { fetchArticles } from '../articlesSlice/thunk';
 import { fetchCategories } from '../categorySlice/thunk';
 import { ActionType } from './types';
 
@@ -34,7 +35,7 @@ export const fetchSignUp = createAsyncThunk(
 
 export const fetchUserData = createAsyncThunk(ActionType.FETCH_USER_DATA, async (_, thunkAPI) => {
     const response = await authAPI.authMe();
-    // TODO: HERE ADD FETCH ARTICLES FOR INSTANT LOAD
+    await thunkAPI.dispatch(fetchArticles());
     await thunkAPI.dispatch(fetchCategories());
     return response;
 });

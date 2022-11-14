@@ -11,8 +11,8 @@ export interface IArticle {
     title: string;
     content: string;
     author: {
-        id: IUser['id'];
-        usernmae: IUser['username'];
+        _id: IUser['_id'];
+        username: IUser['username'];
     };
     tags: string[];
     likes: number;
@@ -26,8 +26,8 @@ export interface IComment {
     id: string;
     content: string;
     author: {
-        id: IUser['id'];
-        usernmae: IUser['username'];
+        _id: IUser['_id'];
+        username: IUser['username'];
     };
     likes: number;
     likedBy: string[];
@@ -35,7 +35,7 @@ export interface IComment {
 }
 
 export interface IUser {
-    id: string;
+    _id: string;
     username: string;
     articles: IArticle[];
     likedArticles: IArticle[];

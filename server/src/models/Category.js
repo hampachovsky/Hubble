@@ -25,7 +25,6 @@ categorySchema.set('toJSON', {
         delete returnedObject._id;
         delete returnedObject.__v;
         delete returnedObject.createdAt;
-        delete returnedObject.articles;
     },
 });
 

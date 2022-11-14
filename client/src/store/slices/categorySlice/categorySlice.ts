@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CategoryState } from 'models/types';
 import { LoadingStatus } from 'models/utilsTypes';
-import { fetchCategories } from './thunk';
+import { fetchArticlesByCategory, fetchCategories } from './thunk';
 
 const initialState: CategoryState = {
     categories: null,
@@ -41,6 +41,21 @@ export const categorySlice = createSlice({
     extraReducers(builder) {
         builder.addCase(fetchCategories.fulfilled, (state, { payload }) => {
             state.categories = payload;
+            categorySlice.caseReducers.setSuccess(state);
+        });
+        builder.addCase(fetchCategories.pending, (state) => {
+            categorySlice.caseReducers.setLoadingStatus(state);
+        });
+        builder.addCase(fetchCategories.rejected, (state, payload) => {
+            categorySlice.caseReducers.setErrorStatus(state, payload);
+        });
+        builder.addCase(fetchArticlesByCategory.rejected, (state, payload) => {
+            categorySlice.caseReducers.setErrorStatus(state, payload);
+        });
+        builder.addCase(fetchArticlesByCategory.pending, (state) => {
+            categorySlice.caseReducers.setLoadingStatus(state);
+        });
+        builder.addCase(fetchArticlesByCategory.fulfilled, (state) => {
             categorySlice.caseReducers.setSuccess(state);
         });
     },

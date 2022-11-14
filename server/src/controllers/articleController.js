@@ -5,10 +5,8 @@ import Category from '../models/Category.js';
 const articleController = {
     async getAll(req, res) {
         try {
-            const articles = await Article.find().populate([
-                'category',
-                { path: 'author', select: 'username' },
-            ]);
+            let articles = await Article.find().populate({ path: 'author', select: 'username' });
+            articles = articles.sort((a, b) => new Date(b.created) - new Date(a.created));
             return res.status(200).json(articles);
         } catch (e) {
             console.log(e);
@@ -128,7 +126,7 @@ const articleController = {
                     likedArticle._id,
                     { ...likedArticle },
                     { new: true, likedBy: 0 },
-                );
+                ).populate({ path: 'author', select: ['username', '_id'] });
                 return res.status(200).json(savedArticle);
             } catch (e) {
                 return res.status(500).json({ error: 'Cannot update user or article' });
@@ -157,7 +155,7 @@ const articleController = {
                     likedArticle._id,
                     { ...likedArticle },
                     { new: true, likedBy: 0 },
-                );
+                ).populate({ path: 'author', select: ['username', '_id'] });
                 return res.status(200).json(savedArticle);
             } catch (e) {
                 return res.status(500).json({ error: 'Cannot update user or article' });

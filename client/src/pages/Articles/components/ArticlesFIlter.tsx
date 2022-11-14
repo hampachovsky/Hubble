@@ -20,7 +20,7 @@ const tabList: Array<TabListType> = [
     },
     {
         key: 'byDate',
-        tab: 'New',
+        tab: 'Older',
     },
     {
         key: 'liked',

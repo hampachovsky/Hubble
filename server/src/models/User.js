@@ -36,9 +36,9 @@ const userSchema = new mongoose.Schema({
 
 userSchema.set('toJSON', {
     transform: (document, returnedObject) => {
-        returnedObject.id = returnedObject._id.toString();
+        // returnedObject.id = returnedObject._id;
         delete returnedObject.__v;
-        delete returnedObject._id;
+        //   delete returnedObject._id;
         delete returnedObject.password;
         delete returnedObject.created;
     },
