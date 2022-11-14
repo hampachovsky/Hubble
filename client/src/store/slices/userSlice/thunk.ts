@@ -10,8 +10,9 @@ export const fetchSignIn = createAsyncThunk(
     async (payload: SignInPayload, thunkAPI) => {
         try {
             const response = await authAPI.login(payload);
-            window.localStorage.setItem('token', response.token);
-            // TODO: HERE ADD FETCH ARTICLES FOR INSTANT LOAD
+            await thunkAPI.dispatch(fetchCategories());
+            await thunkAPI.dispatch(fetchArticles());
+            await window.localStorage.setItem('token', response.token);
             return response.user;
         } catch (error) {
             const err = error as RequestErrorType;

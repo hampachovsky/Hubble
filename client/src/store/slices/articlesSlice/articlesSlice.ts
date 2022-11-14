@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IArticle } from 'models/types';
 import { LoadingStatus, State } from 'models/utilsTypes';
-import { fetchArticles } from './thunk';
+import { fetchArticles, fetchChangeLike } from './thunk';
 
 export const articleAdapter = createEntityAdapter<IArticle>({
     selectId: (article) => article.id,
@@ -45,6 +45,11 @@ export const articlesSlice = createSlice({
             state.status = LoadingStatus.SUCCESS;
             state.error = null;
         },
+        updateArticle: (state, action: PayloadAction<IArticle>) => {
+            articleAdapter.setOne(state, action.payload);
+            state.status = LoadingStatus.SUCCESS;
+            state.error = null;
+        },
     },
     extraReducers(builder) {
         builder.addCase(fetchArticles.fulfilled, (state, { payload }) => {
@@ -57,10 +62,25 @@ export const articlesSlice = createSlice({
         builder.addCase(fetchArticles.rejected, (state, payload) => {
             articlesSlice.caseReducers.setErrorStatus(state, payload);
         });
+        builder.addCase(fetchChangeLike.fulfilled, (state, { payload }) => {
+            articleAdapter.setOne(state, payload);
+            articlesSlice.caseReducers.setSuccess(state);
+        });
+        builder.addCase(fetchChangeLike.pending, (state) => {
+            articlesSlice.caseReducers.setLoadingStatus(state);
+        });
+        builder.addCase(fetchChangeLike.rejected, (state, payload) => {
+            articlesSlice.caseReducers.setErrorStatus(state, payload);
+        });
     },
 });
 
 export default articlesSlice.reducer;
 
-export const { setArticlesStatus, resetArticlesState, setArticles, setLoadingStatus } =
-    articlesSlice.actions;
+export const {
+    setArticlesStatus,
+    resetArticlesState,
+    setArticles,
+    setLoadingStatus,
+    updateArticle,
+} = articlesSlice.actions;

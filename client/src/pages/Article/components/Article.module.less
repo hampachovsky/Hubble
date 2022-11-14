@@ -1,0 +1,26 @@
+@import 'styles/mixins.less';
+@import 'styles/variables.less';
+
+.articleWrapper {
+  width: 100%;
+  .article {
+    width: @page-desktop-width;
+    .tablet (@page-tablet-width);
+    .mobile (@page-mobile-width);
+    .ultraSmall(@page-ultra-small-width);
+  }
+  .articleTitle {
+    border-bottom: 1px solid @secondary-theme-color;
+    padding-bottom: 0.3em;
+  }
+
+  .articleContent {
+    font-size: 18px;
+    font-weight: 500;
+
+    img {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+}

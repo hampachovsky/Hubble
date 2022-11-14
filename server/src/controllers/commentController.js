@@ -12,6 +12,25 @@ const commentController = {
             return res.status(400).json({ error: 'failed  take comment' });
         }
     },
+    async getByArticle(req, res) {
+        try {
+            const { id } = req.params;
+            const article = await Article.findById(id).populate({
+                path: 'comments',
+                populate: {
+                    path: 'author',
+                    select: ['username', '_id'],
+                },
+            });
+            article.comments = article.comments.sort(
+                (a, b) => new Date(b.created) - new Date(a.created),
+            );
+            return res.status(200).json(article.comments);
+        } catch (e) {
+            console.log(e);
+            return res.status(500).json(e);
+        }
+    },
     async getById(req, res) {
         try {
             const comment = await Comment.findById(req.params.id);
@@ -36,6 +55,7 @@ const commentController = {
             if (!userWhoComments) res.status(404).json({ error: 'User from token not found' });
             if (!articleToComment) return res.status(404).json({ error: 'Article not found' });
         } catch (e) {
+            console.log(e);
             return res.status(500).json({ error: 'User or article not found' });
         }
         const commentToSave = {

@@ -46,6 +46,8 @@ module.exports = {
         '@typescript-eslint/no-shadow': ['error'],
         'react/require-default-props': 'off',
         'no-underscore-dangle': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
         'prettier/prettier': [
             'error',

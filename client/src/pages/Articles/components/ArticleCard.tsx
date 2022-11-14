@@ -1,5 +1,5 @@
 import { Card, Typography } from 'antd';
-import { IArticle, IUser } from 'models/types';
+import { IArticle } from 'models/types';
 import moment from 'moment';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -29,7 +29,7 @@ export const ArticleCard: React.FC<Props> = ({
             <Link to={`/article/${id}`}>
                 <Title level={5}>{title}</Title>
             </Link>
-            <ArticleFooter likes={likes} likedBy={likedBy} comments={comments} />
+            <ArticleFooter id={id} likes={likes} likedBy={likedBy} comments={comments} />
         </Card>
     </div>
 );

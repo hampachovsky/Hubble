@@ -149,7 +149,6 @@ const articleController = {
                 foundedUser.likedArticles = foundedUser.likedArticles.filter(
                     (a) => a._id.toString() !== likedArticle._id.toString(),
                 );
-                console.log(foundedUser);
                 await foundedUser.save();
                 const savedArticle = await Article.findByIdAndUpdate(
                     likedArticle._id,

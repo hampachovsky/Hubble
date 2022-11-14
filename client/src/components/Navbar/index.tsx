@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { resetArticlesState } from 'store/slices/articlesSlice/articlesSlice';
 import { resetCategoryState } from 'store/slices/categorySlice/categorySlice';
+import { resetCommentsState } from 'store/slices/commentSlice/commentSlice';
 import { logout } from 'store/slices/userSlice/userSlice';
 import style from './Navbar.module.less';
 
@@ -18,8 +19,8 @@ export const Navbar: React.FC = () => {
 
     const handleSignOut = (): any => {
         navigate(RoutesPath.LOGIN, { replace: true });
-        // TODO: ADD HERE RESET ALL STATE...
         dispatch(logout());
+        dispatch(resetCommentsState());
         dispatch(resetCategoryState());
         dispatch(resetArticlesState());
     };

@@ -7,5 +7,6 @@ const router = new Router();
 router.get('/all', commentController.getAll);
 router.get('/:id', commentController.getById);
 router.put('/:id/like', userExtractor, commentController.changeLike);
+router.get('/getBy/:id', commentController.getByArticle);
 
 export default router;

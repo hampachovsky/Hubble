@@ -23,3 +23,8 @@ export enum ArticlesApiRoutes {
     GET_ALL = '/articles/all',
     CHANGE_LIKE = '/articles/',
 }
+export enum CommentApiRoutes {
+    ADD_COMENT = '/articles/',
+    GET_BY_ARTICLE = '/comments/getBy/',
+    CHANGE_LIKE = '/comments/',
+}

@@ -1,0 +1,47 @@
+@import 'styles/mixins.less';
+@import 'styles/variables.less';
+
+.commentsWrapper {
+  margin-top: 3rem;
+  width: 100%;
+  .comments {
+    width: @page-desktop-width;
+    .tablet (@page-tablet-width);
+    .mobile (@page-mobile-width);
+    .ultraSmall(@page-ultra-small-width);
+
+    .commentField {
+      width: 100%;
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .submitBtn{
+      margin-top: 10px;
+      display: flex;
+      background-color: @basket-dark-blue;
+      border: 0;
+      &:disabled {
+        color: @basket-black;
+        background-color: @basket-light-blue;
+      }
+    }
+
+    .authorName {
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .commentAction {
+      display: flex;
+      margin-top: 0;
+      padding-top: 0;
+      font-size: 15px;
+    }
+
+    .text {
+      padding-left: 0.2rem;
+    }
+  }
+}
