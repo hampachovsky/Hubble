@@ -12,7 +12,7 @@ export const fetchSignIn = createAsyncThunk(
             const response = await authAPI.login(payload);
             await thunkAPI.dispatch(fetchCategories());
             await thunkAPI.dispatch(fetchArticles());
-            await window.localStorage.setItem('token', response.token);
+            window.localStorage.setItem('token', response.token);
             return response.user;
         } catch (error) {
             const err = error as RequestErrorType;

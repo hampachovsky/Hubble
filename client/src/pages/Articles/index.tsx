@@ -1,4 +1,4 @@
-import { Space, Spin, Typography } from 'antd';
+import { Space, Spin } from 'antd';
 import { BackToTop } from 'components/common/BackToTop';
 import { PrivateLayout } from 'components/Layout/PrivateLayout';
 import { useAppSelector } from 'hooks/redux';

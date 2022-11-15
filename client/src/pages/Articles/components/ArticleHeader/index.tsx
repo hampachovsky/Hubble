@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const ArticleHeader: React.FC<Props> = ({ author, tags }) => (
-    <Link to={`${RoutesPath.PROFILE}${author._id}`}>
+    <>
         <div className={style.userInfo}>
             <Title level={4} className={style.userName}>
                 {author.username}
@@ -25,5 +25,5 @@ export const ArticleHeader: React.FC<Props> = ({ author, tags }) => (
                 <Tag key={index}>{tag}</Tag>
             ))}
         </div>
-    </Link>
+    </>
 );
