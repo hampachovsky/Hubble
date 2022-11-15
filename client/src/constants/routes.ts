@@ -9,6 +9,11 @@ export enum RoutesPath {
     SEARCH = '/search',
 }
 
+export enum ProfileRoutesPath {
+    ARTICLES = '/profile/',
+    RATED = '/profile/rated',
+}
+
 export enum AuthApiRoutes {
     LOGIN = '/auth/login',
     REGISTER = '/auth/register',
@@ -21,6 +26,9 @@ export enum CategoryApiRoutes {
 
 export enum ArticlesApiRoutes {
     GET_ALL = '/articles/all',
+    GET_OWN_ARTICLES = '/articles/own',
+    GET_LIKED_ARTICLES = '/articles/liked',
+    ADD_ARTICLE = '/articles/',
     CHANGE_LIKE = '/articles/',
 }
 export enum CommentApiRoutes {

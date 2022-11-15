@@ -1,0 +1,40 @@
+@import 'styles/mixins.less';
+@import 'styles/variables.less';
+
+.profileHeader {
+  background: #fff;
+  padding: 20px;
+  width: @page-desktop-width;
+  .tablet (30rem);
+  .mobile (@page-mobile-width);
+  .ultraSmall(@page-ultra-small-width);
+
+  .leftSide {
+    display: flex;
+    align-items: center;
+    h3 {
+      padding-left: 0.7em;
+    }
+  }
+
+  .rightSide {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .statusWrapper {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    .status {
+      font-size: 17px;
+      font-weight: 500;
+    }
+  }
+}
+
+.tabContent > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

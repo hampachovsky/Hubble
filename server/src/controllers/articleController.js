@@ -27,6 +27,48 @@ const articleController = {
             return res.status(400).json({ error: 'failed  take article' });
         }
     },
+    async getOwnArticles(req, res) {
+        try {
+            const userFromToken = req.user;
+            const user = await User.findById(userFromToken._id).populate([
+                {
+                    path: 'articles',
+                    populate: {
+                        path: 'author',
+                        select: 'username',
+                    },
+                },
+            ]);
+            if (!user) return res.status(404).json({ error: 'User not found' });
+            user.articles = user.articles.sort((a, b) => new Date(b.created) - new Date(a.created));
+            return res.status(200).json(user.articles);
+        } catch (e) {
+            console.log(e);
+            return res.status(400).json({ error: 'failed  take article' });
+        }
+    },
+    async getLikedArticles(req, res) {
+        try {
+            const userFromToken = req.user;
+            const user = await User.findById(userFromToken._id).populate([
+                {
+                    path: 'likedArticles',
+                    populate: {
+                        path: 'author',
+                        select: 'username',
+                    },
+                },
+            ]);
+            if (!user) return res.status(404).json({ error: 'User not found' });
+            user.likedArticles = user.likedArticles.sort(
+                (a, b) => new Date(b.created) - new Date(a.created),
+            );
+            return res.status(200).json(user.likedArticles);
+        } catch (e) {
+            console.log(e);
+            return res.status(400).json({ error: 'failed  take article' });
+        }
+    },
     async create(req, res) {
         const { body } = req;
         const { user } = req;
@@ -55,7 +97,12 @@ const articleController = {
         };
         let savedArticle;
         try {
-            savedArticle = await new Article({ ...articleToAdd }).save();
+            savedArticle = await (
+                await new Article({ ...articleToAdd }).save()
+            ).populate({
+                path: 'author',
+                select: 'username',
+            });
         } catch (e) {
             return res.status(500).json({ error: 'User from token not found' });
         }

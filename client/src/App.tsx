@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.less';
 import { Route, Routes } from 'react-router-dom';
-import { RoutesPath } from 'constants/routes';
+import { ProfileRoutesPath, RoutesPath } from 'constants/routes';
 import { Login } from 'pages/Login';
 import { Register } from 'pages/Register';
 import { Profile } from 'pages/Profile';
@@ -26,7 +26,9 @@ function App() {
         <Routes>
             <Route path={RoutesPath.LOGIN} element={<Login />} />
             <Route path={RoutesPath.REGISTER} element={<Register />} />
-            <Route path={RoutesPath.PROFILE} element={<Profile />} />
+            <Route path={RoutesPath.PROFILE} element={<Profile />}>
+                <Route path={ProfileRoutesPath.RATED} element={<Profile />} />
+            </Route>
             <Route path={RoutesPath.ARTICLES} element={<Articles />} />
             <Route path={RoutesPath.ARTICLE} element={<Article />} />
             <Route path='*' element={<div>Page not found</div>} />

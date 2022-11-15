@@ -1,7 +1,13 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IArticle } from 'models/types';
 import { LoadingStatus, State } from 'models/utilsTypes';
-import { fetchArticles, fetchChangeLike } from './thunk';
+import {
+    fetchArticles,
+    fetchChangeLike,
+    fetchCreateArticle,
+    fetchLikedArticles,
+    fetchOwnArticles,
+} from './thunk';
 
 export const articleAdapter = createEntityAdapter<IArticle>({
     selectId: (article) => article.id,
@@ -62,6 +68,26 @@ export const articlesSlice = createSlice({
         builder.addCase(fetchArticles.rejected, (state, payload) => {
             articlesSlice.caseReducers.setErrorStatus(state, payload);
         });
+        builder.addCase(fetchOwnArticles.fulfilled, (state, { payload }) => {
+            articleAdapter.setAll(state, payload);
+            articlesSlice.caseReducers.setSuccess(state);
+        });
+        builder.addCase(fetchOwnArticles.pending, (state) => {
+            articlesSlice.caseReducers.setLoadingStatus(state);
+        });
+        builder.addCase(fetchOwnArticles.rejected, (state, payload) => {
+            articlesSlice.caseReducers.setErrorStatus(state, payload);
+        });
+        builder.addCase(fetchLikedArticles.fulfilled, (state, { payload }) => {
+            articleAdapter.setAll(state, payload);
+            articlesSlice.caseReducers.setSuccess(state);
+        });
+        builder.addCase(fetchLikedArticles.pending, (state) => {
+            articlesSlice.caseReducers.setLoadingStatus(state);
+        });
+        builder.addCase(fetchLikedArticles.rejected, (state, payload) => {
+            articlesSlice.caseReducers.setErrorStatus(state, payload);
+        });
         builder.addCase(fetchChangeLike.fulfilled, (state, { payload }) => {
             articleAdapter.setOne(state, payload);
             articlesSlice.caseReducers.setSuccess(state);
@@ -70,6 +96,16 @@ export const articlesSlice = createSlice({
             articlesSlice.caseReducers.setLoadingStatus(state);
         });
         builder.addCase(fetchChangeLike.rejected, (state, payload) => {
+            articlesSlice.caseReducers.setErrorStatus(state, payload);
+        });
+        builder.addCase(fetchCreateArticle.fulfilled, (state, { payload }) => {
+            articleAdapter.addOne(state, payload);
+            articlesSlice.caseReducers.setSuccess(state);
+        });
+        builder.addCase(fetchCreateArticle.pending, (state) => {
+            articlesSlice.caseReducers.setLoadingStatus(state);
+        });
+        builder.addCase(fetchCreateArticle.rejected, (state, { payload }) => {
             articlesSlice.caseReducers.setErrorStatus(state, payload);
         });
     },
